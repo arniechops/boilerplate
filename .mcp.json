@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "notion": {
+      "type": "http",
+      "url": "https://mcp.notion.com/mcp"
+    },
+    "linear": {
+      "type": "http",
+      "url": "https://mcp.linear.app/mcp"
+    },
+    "parallel": {
+      "type": "http",
+      "url": "https://search-mcp.parallel.ai/mcp"
+    }
+  }
+}

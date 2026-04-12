@@ -1,13 +1,10 @@
-__pycache__/
-.env
-.venv/
+# OS
 .DS_Store
-.idea/
-.pytest_cache/
-.ruff_cache/
+
+# Editors / IDEs
 .vscode/
+.idea/
 .cursor/
 .cursorrules
 .cursorignore
 .cursorignorerules
-.cursorignorerulesrules

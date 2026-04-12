@@ -1,5 +1,12 @@
+# Hot-reloads on file changes
 dev:
     uv run uvicorn app.main:app --reload --app-dir src
 
+# Single worker, no reload — intended as a local production smoke-test only.
+# Real deployments should use a process manager (e.g. gunicorn) or a container.
 start:
     uv run uvicorn app.main:app --app-dir src
+
+# Run a script from the scripts/ directory: just script <name>
+script name:
+    uv run scripts/{{name}}.py

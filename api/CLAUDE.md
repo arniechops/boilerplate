@@ -48,7 +48,82 @@ GET /api/v1/health
 
 ## Configuration
 
-All config lives in `src/app/config.py` as a pydantic-settings `Settings` class. Add new config fields there — never use `os.getenv()` directly elsewhere. Values are read from environment variables and `.env` (in the working directory when the server starts).
+All config lives in `src/app/config.py` as a pydantic-settings `Settings` class. Never use `os.getenv()` directly elsewhere in the codebase.
+
+To add a new variable, add a field to `Settings`:
+```python
+# Required — app will refuse to start if missing from the environment
+database_url: str
+
+# Optional — has a fallback default
+some_flag: bool = False
+```
+
+Then add the value to `.env` for local development (this file is gitignored and never committed):
+```env
+DATABASE_URL=postgresql://user:pass@localhost:5432/mydb
+```
+
+Access config anywhere via the singleton:
+```python
+from app.config import settings
+
+settings.database_url
+```
+
+In production, set the same names as real environment variables on the host — pydantic-settings reads env vars first, then falls back to `.env`.
+
+## Bespoke scripts
+
+One-off scripts live in `scripts/`. Run from the `api/` directory:
+
+```bash
+just script <name>        # runs scripts/<name>.py
+uv run scripts/<name>.py  # equivalent
+```
+
+### Two modes
+
+**Default — uses the project venv.**
+No metadata block. Project packages are importable (`from app.config import settings`).
+
+```python
+#!/usr/bin/env -S uv run
+from app.config import settings
+
+def main() -> None:
+    ...
+```
+
+**Extra deps — uses an isolated environment.**
+Add a [PEP 723](https://peps.python.org/pep-0723/) inline metadata block to pull in packages not in `pyproject.toml`. This runs in isolation, so project packages are no longer importable — choose one model or the other.
+
+```python
+#!/usr/bin/env -S uv run
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#   "httpx",
+# ]
+# ///
+```
+
+### Which mode to use
+
+- **Script needs project code** (`from app.X import ...`) → default mode. If it also needs an extra package, add that package to `pyproject.toml` via `uv add` rather than using the PEP 723 block.
+- **Script is truly standalone** with no need for project code, and its extra dep would pollute `pyproject.toml` (e.g. a one-off data migration tool, a webhook tester) → PEP 723 mode. To still access project code in this mode, declare the local package in the block:
+
+```python
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#   "httpx",
+#   "api @ ..",  # installs the local api package into the isolated env
+# ]
+# ///
+```
+
+(`..` is relative to `scripts/`, pointing up to `api/` where `pyproject.toml` lives.)
 
 ## Dependency management
 
