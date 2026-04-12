@@ -11,6 +11,14 @@
     "parallel": {
       "type": "http",
       "url": "https://search-mcp.parallel.ai/mcp"
+    },
+    "supabase": {
+      "type": "http",
+      "url": "https://mcp.supabase.com/mcp"
+    },
+    "vercel": {
+      "type": "http",
+      "url": "https://mcp.vercel.com"
     }
   }
 }

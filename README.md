@@ -65,6 +65,8 @@ Configured in `.mcp.json`. All use HTTP/OAuth — no API keys committed to the r
 | **Notion** | Read/write Notion pages and databases | `https://mcp.notion.com/mcp` |
 | **Linear** | Query and manage Linear issues | `https://mcp.linear.app/mcp` |
 | **Parallel** | Web search | `https://search-mcp.parallel.ai/mcp` |
+| **Supabase** | Manage Supabase projects and databases | `https://mcp.supabase.com/mcp` |
+| **Vercel** | Deploy and manage Vercel projects | `https://mcp.vercel.com` |
 
 ## Claude Code plugins
 
