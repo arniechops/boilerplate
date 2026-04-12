@@ -33,19 +33,7 @@ cp api/.env.example api/.env
 cp client/.env.local.example client/.env.local
 ```
 
-### 3. Install Claude Code plugins
-
-```
-/plugin
-```
-
-Select `frontend-design` and `chrome-devtools-mcp`. Then reload:
-
-```
-/reload-plugins
-```
-
-### 4. Authenticate MCP servers
+### 3. Authenticate MCP servers
 
 MCP server endpoints are pre-configured in `.mcp.json`. Each contributor authenticates with their own account — nothing is stored in the repo.
 
@@ -55,7 +43,7 @@ In your Claude Code session, run:
 ```
 Follow the OAuth prompts for each server. Tokens are saved to your local Claude config.
 
-### 5. Start the dev servers
+### 4. Start the dev servers
 
 ```bash
 # From the repo root — starts both api and client, Ctrl+C kills both
