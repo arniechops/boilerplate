@@ -1,0 +1,5 @@
+dev:
+    uv run uvicorn app.main:app --reload --app-dir src
+
+start:
+    uv run uvicorn app.main:app --app-dir src
