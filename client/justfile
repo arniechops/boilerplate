@@ -1,0 +1,12 @@
+dev:
+    npm run dev
+
+build:
+    npm run build
+
+# Builds first, then serves the optimized production bundle
+start: build
+    npm run start
+
+lint:
+    npm run lint
