@@ -9,7 +9,7 @@ An opinionated full-stack boilerplate. Low-level details live in each sub-direct
 | **API** | Python 3.13, FastAPI, uv, onion architecture |
 | **Client** | Next.js (App Router), Tailwind CSS v4, shadcn/ui, Zustand, TanStack Query, Axios |
 | **Task runner** | just (root orchestrates both; each dir has its own justfile) |
-| **MCP servers** | Notion, Linear, Parallel (HTTP/OAuth — per-user auth, no keys in the repo) |
+| **MCP servers** | Notion, Linear, Parallel, Supabase, Vercel (HTTP/OAuth); Context7, Magic UI (stdio) |
 
 ## Setup
 
@@ -67,6 +67,8 @@ Configured in `.mcp.json`. All use HTTP/OAuth — no API keys committed to the r
 | **Parallel** | Web search | `https://search-mcp.parallel.ai/mcp` |
 | **Supabase** | Manage Supabase projects and databases | `https://mcp.supabase.com/mcp` |
 | **Vercel** | Deploy and manage Vercel projects | `https://mcp.vercel.com` |
+| **Context7** | Fetches up-to-date library and framework docs at query time (stdio) | `@upstash/context7-mcp` |
+| **Magic UI** | Generates animated shadcn/Tailwind UI components (stdio) | `@magicuidesign/mcp` |
 
 ## Claude Code plugins
 
